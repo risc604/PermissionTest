@@ -20,15 +20,15 @@ public class MainActivity extends AppCompatActivity
     private final static String TAG = MainActivity.class.getSimpleName();
 
     private static final int REQUEST_CONTACTS = 1;
-    String[] PERMISSIONS = {//Manifest.permission.CAMERA,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.BLUETOOTH,
-                            Manifest.permission.BLUETOOTH_ADMIN,
-                            //Manifest.permission.VIBRATE
-                        }; // List of permissions required
-
+    String[] PERMISSIONS = {
+            //Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.BLUETOOTH,
+                Manifest.permission.BLUETOOTH_ADMIN,
+                //Manifest.permission.VIBRATE
+            }; // List of permissions required
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
         Log.i(TAG, "askDialog(), permission: " + permission);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(permission + " Request !!");
-        builder.setMessage("This App requests " + permission + ", are you OK ? ");
+        builder.setMessage("App requests " + permission.trim() + ", are you OK ? ");
         builder.setPositiveButton(" OK ", new DialogInterface.OnClickListener()
         {
                     @Override
