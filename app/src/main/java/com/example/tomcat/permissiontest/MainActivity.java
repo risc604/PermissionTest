@@ -37,14 +37,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Log.i(TAG, "onCreate() ...");
 
-        //initControl();
-        //ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_CONTACTS);
+        initControl();
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
-        initControl();
     }
 
     @Override
@@ -85,39 +84,23 @@ public class MainActivity extends AppCompatActivity
     private void initControl()
     {
         //int storageWrite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int storageRead = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        int locationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
-        int blePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN);
         int packageGranted = PackageManager.PERMISSION_GRANTED;
 
         Log.i(TAG, "initControl(), storageRead: " + storageRead +
                     ", packageGranted: " + packageGranted);
 
-        //if (storageWrite != packageGranted)
-        //{
-        //    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE))
-        //    {
-        //        askDialog(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        //    }
-        //    else
-        //    {
-        //        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-        //                REQUEST_CONTACTS);
-        //    }
-        //}
+
+        for (String idex : PERMISSIONS)
+        {
+            Object idx;
+            if (checkSelfPermission(this, idx) == packageGranted)
+            {
+
+            }
+        }
 
         if (storageRead != packageGranted)
         {
-            //if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE))
-            //{
-            //    askDialog(Manifest.permission.READ_EXTERNAL_STORAGE);
-            //}
-            //else
-            //{
-            //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-            //            REQUEST_CONTACTS);
-            //}
-
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         REQUEST_CONTACTS);
         }
@@ -127,47 +110,7 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
-        if (locationPermission != packageGranted)
-        {
-            //if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE))
-            //{
-            //    askDialog(Manifest.permission.READ_EXTERNAL_STORAGE);
-            //}
-            //else
-            //{
-            //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-            //            REQUEST_CONTACTS);
-            //}
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    REQUEST_CONTACTS);
-        }
-        else
-        {
-            ///askDialog("Location ");
-            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION);
-        }
-
-        if (blePermission != packageGranted)
-        {
-            //if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE))
-            //{
-            //    askDialog(Manifest.permission.READ_EXTERNAL_STORAGE);
-            //}
-            //else
-            //{
-            //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-            //            REQUEST_CONTACTS);
-            //}
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_ADMIN},
-                    REQUEST_CONTACTS);
-        }
-        else
-        {
-            ///askDialog("BLE permission");
-            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.BLUETOOTH_ADMIN);
-        }
 
 
     }
