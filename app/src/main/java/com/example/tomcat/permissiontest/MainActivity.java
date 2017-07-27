@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity
                         //(grantResults[2] == PackageManager.PERMISSION_GRANTED) &&
                         //(grantResults[3] == PackageManager.PERMISSION_GRANTED)) {
                     //Do your work.
-                    for (String permission : permissions) {
+                    for (String permission : permissions)
+                    {
                         askDialog(permission);
                     }
                 }
@@ -86,29 +87,19 @@ public class MainActivity extends AppCompatActivity
         //int storageWrite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int packageGranted = PackageManager.PERMISSION_GRANTED;
 
-        Log.i(TAG, "initControl(), storageRead: " + storageRead +
-                    ", packageGranted: " + packageGranted);
+        Log.i(TAG, "initControl(), packageGranted: " + packageGranted);
 
 
-        for (String idex : PERMISSIONS)
+        for (String permission : PERMISSIONS)
         {
-            Object idx;
-            if (checkSelfPermission(this, idx) == packageGranted)
+            if (ActivityCompat.checkSelfPermission(this, permission) != packageGranted)
             {
-
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CONTACTS);
             }
         }
 
-        if (storageRead != packageGranted)
-        {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CONTACTS);
-        }
-        else
-        {
-            ///askDialog("0 permission OK !!");
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
 
 
 
